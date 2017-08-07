@@ -3,12 +3,10 @@
 #include"Vector2.h"
 
 class Seek: public IBehaviour{
+public:
 	Seek(Agent *target);
 	~Seek();
-	
-	Vector2 *m_targetPos;
+	virtual void Update(Agent *agent, float dt);
 
-	virtual void Update(Agent *agent, float dt){
-		//add seek stuff
-	}
+	Vector2 *m_targetPos;
 };

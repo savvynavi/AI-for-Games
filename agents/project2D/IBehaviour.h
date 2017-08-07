@@ -3,7 +3,8 @@
 class Agent;
 
 class IBehaviour{
-	IBehaviour();
+public:
+	IBehaviour(){};
 	~IBehaviour(){}
 	virtual void Update(Agent *agent, float dt) = 0;
 };

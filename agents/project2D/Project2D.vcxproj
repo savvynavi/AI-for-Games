@@ -95,12 +95,15 @@
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Application2D.cpp" />
+    <ClCompile Include="KeyboardControler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Seek.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="IBehaviour.h" />
+    <ClInclude Include="KeyboardControler.h" />
     <ClInclude Include="Seek.h" />
   </ItemGroup>
   <ItemGroup>

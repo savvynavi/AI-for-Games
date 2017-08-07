@@ -30,6 +30,12 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>Source Files\agents</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardControler.cpp">
+      <Filter>Source Files\agents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h">
@@ -42,6 +48,9 @@
       <Filter>Header Files\agents</Filter>
     </ClInclude>
     <ClInclude Include="Seek.h">
+      <Filter>Header Files\agents</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardControler.h">
       <Filter>Header Files\agents</Filter>
     </ClInclude>
   </ItemGroup>
