@@ -3,44 +3,47 @@
 #include"Seek.h"
 #include<iostream>
 
-#define MAX_VELOCITY 100.0f
-#define MAX_FORCE 50.0f
-
 Agent::Agent(aie::Texture *texture, Vector2 &position, aie::Renderer2D *renderer): m_position(position){
 	m_renderer = renderer;
 	m_texture = texture;
 	m_velocity = {0, 0};
 	m_acc = {0, 0};
 	m_force = {0, 0};
-	m_timer = 0;
+	m_maxVelocity = 100;
 }
 
 Agent::~Agent(){
 
 }
 
-//called every update to make agent move - works kind of, but not really
+//controls how agent moves
 void Agent::addForce(){
 	//m_acc += m_force;
 	//m_velocity = (m_velocity + (m_acc * m_dt));
 	//m_position += m_velocity;
 	m_velocity += m_force * m_dt;
-	if(m_velocity.x >= MAX_VELOCITY){
-		m_velocity.x = MAX_VELOCITY;
-	}
-	if(m_velocity.y >= MAX_VELOCITY){
-		m_velocity.y = MAX_VELOCITY;
-	}
-	if(m_velocity.x <= -MAX_VELOCITY){
-		m_velocity.x = -MAX_VELOCITY;
-	}
-	if(m_velocity.y <= -MAX_VELOCITY){
-		m_velocity.y = -MAX_VELOCITY;
-	}
 
+
+
+	//m_velocity += m_acc;
+	//if(m_velocity.x > m_maxVelocity){
+	//	m_velocity.x = m_maxVelocity;
+	//}
+	//if(m_velocity.x < -m_maxVelocity){
+	//	m_velocity.x = -m_maxVelocity;
+	//}
+	//if(m_velocity.y > m_maxVelocity){
+	//	m_velocity.y = m_maxVelocity;
+	//}
+	//if(m_velocity.y < -m_maxVelocity){
+	//	m_velocity.y = -m_maxVelocity;
+	//}
 	m_position += m_velocity * m_dt;
+	//m_acc = {0, 0};
+	//m_position += m_velocity * m_dt;
 }
 
+//weird lag probs from no f cap
 void Agent::setForce(Vector2& force){
 	m_force += force;
 	//if(m_force.x > 50){
@@ -65,16 +68,15 @@ void Agent::addBehaviour(IBehaviour* behaviour){
 void Agent::Update(float dt){
 	//Acting:
 	m_dt = dt;
-	m_timer += m_dt;
 	for(auto iter = m_behaviours.begin(); iter != m_behaviours.end(); iter++){
 		(*iter)->Update(this, m_dt);
 	}
 	//movement update
 	this->addForce();
-	if(m_timer % 5 == 0){
-		std::cout << "velocity is now {" << this->m_velocity.x << ", " << this->m_velocity.y << "}\n";
-		//std::cout << "Force is now {" << this->m_force.x << ", " << this->m_force.y << "}\n";
-	}
+
+	//std::cout << "velocity is now {" << this->m_velocity.x << ", " << this->m_velocity.y << "}\n";
+	//std::cout << "Force is now {" << this->m_force.x << ", " << this->m_force.y << "}\n";
+
 }
 
 void Agent::Draw(){
