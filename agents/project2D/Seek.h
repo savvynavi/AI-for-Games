@@ -4,9 +4,13 @@
 
 class Seek: public IBehaviour{
 public:
-	Seek(Agent *target);
+	Seek(Agent *agent, Agent *target);
+	Seek (Agent *agent, Vector2& target);
 	~Seek();
-	virtual void Update(Agent *agent, float dt);
-
-	Vector2 *m_targetPos;
+	virtual void Update(Agent *target, float dt);
+private:
+	Agent* m_target;
+	Agent* m_agent;
+	Vector2 m_targetPos;
+	Vector2 m_currentPos;
 };

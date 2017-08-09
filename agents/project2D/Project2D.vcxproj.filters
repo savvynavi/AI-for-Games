@@ -27,13 +27,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Agent.cpp">
-      <Filter>Source Files\agents</Filter>
-    </ClCompile>
     <ClCompile Include="Seek.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
     <ClCompile Include="KeyboardControler.cpp">
+      <Filter>Source Files\agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
   </ItemGroup>

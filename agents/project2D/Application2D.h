@@ -6,6 +6,7 @@
 
 #include"Agent.h"
 #include"KeyboardControler.h"
+#include"Seek.h"
 
 class Application2D : public aie::Application {
 public:
@@ -28,7 +29,9 @@ protected:
 
 	Agent*				m_agentTEST;
 	KeyboardControler*	m_keyboardControlBehav;
+	Seek*				m_seekBehav;
 	Vector2				m_agentPos;
+	Vector2				m_mousePos;
 
 	float m_cameraX, m_cameraY;
 	float m_timer;
