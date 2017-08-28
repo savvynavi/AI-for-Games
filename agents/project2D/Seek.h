@@ -7,7 +7,7 @@ public:
 	Seek(Agent *agent, Agent *target);
 	Seek (Agent *agent, Vector2& target);
 	~Seek();
-	virtual void Update(Agent *target, float dt);
+	void Update(Agent *target, float dt);
 private:
 	Agent* m_target;
 	Agent* m_agent;

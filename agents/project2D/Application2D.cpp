@@ -31,8 +31,8 @@ bool Application2D::startup() {
 	m_agentTEST = new Agent(m_shipTexture, m_agentPos, m_2dRenderer);
 	m_keyboardControlBehav = new KeyboardControler(m_agentTEST);
 	m_seekBehav = new Seek(m_agentTEST, m_mousePos);
-	m_agentTEST->addBehaviour(m_keyboardControlBehav);
-	//m_agentTEST->addBehaviour(m_seekBehav);
+	//m_agentTEST->addBehaviour(m_keyboardControlBehav);
+	m_agentTEST->addBehaviour(m_seekBehav);
 	return true;
 }
 
@@ -50,7 +50,8 @@ void Application2D::update(float deltaTime) {
 	m_timer += deltaTime;
 	// input example
 	aie::Input* input = aie::Input::getInstance();
-
+	//m_mousePos.x = aie::Input::getInstance()->getMouseX();
+	//m_mousePos.y = aie::Input::getInstance()->getMouseY();
 	m_agentTEST->Update(deltaTime);
 }
 

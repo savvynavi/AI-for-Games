@@ -1,2 +1,4 @@
-﻿  Agent.cpp
+﻿  Application2D.cpp
+c:\users\s170841\documents\visual studio 2015\projects\ai for games\agents\project2d\application2d.cpp(29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s170841\documents\visual studio 2015\projects\ai for games\agents\project2d\application2d.cpp(30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project2D.vcxproj -> C:\Users\s170841\Documents\Visual Studio 2015\Projects\AI for Games\agents\temp\Project2D\Debug\Project2D.exe
