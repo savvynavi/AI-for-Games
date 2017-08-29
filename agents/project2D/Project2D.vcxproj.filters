@@ -36,9 +36,6 @@
     <ClCompile Include="Agent.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SteeringBahaviour.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
     </ClInclude>
     <ClInclude Include="KeyboardControler.h">
       <Filter>Header Files\agents</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SteeringForce.h">
       <Filter>Header Files\agents</Filter>

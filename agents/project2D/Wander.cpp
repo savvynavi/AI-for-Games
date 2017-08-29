@@ -1,6 +1,7 @@
 #include "Wander.h"
 #include"Agent.h"
 
+//make work later
 Wander::Wander(Agent* agent){
 	m_agent = agent;
 }

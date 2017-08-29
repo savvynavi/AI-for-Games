@@ -99,7 +99,6 @@
     <ClCompile Include="KeyboardControler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Seek.cpp" />
-    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SteeringBahaviour.cpp" />
     <ClCompile Include="Wander.cpp" />
   </ItemGroup>
@@ -107,7 +106,6 @@
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="Flee.h" />
-    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IBehaviour.h" />
     <ClInclude Include="KeyboardControler.h" />
     <ClInclude Include="Seek.h" />
