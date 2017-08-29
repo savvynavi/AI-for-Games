@@ -45,6 +45,9 @@
     <ClCompile Include="Flee.cpp">
       <Filter>Source Files\agents</Filter>
     </ClCompile>
+    <ClCompile Include="Wander.cpp">
+      <Filter>Source Files\agents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h">
@@ -72,7 +75,10 @@
       <Filter>Header Files\agents</Filter>
     </ClInclude>
     <ClInclude Include="Flee.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Wander.h">
+      <Filter>Header Files\agents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

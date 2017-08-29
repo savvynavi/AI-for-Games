@@ -101,6 +101,7 @@
     <ClCompile Include="Seek.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="SteeringBahaviour.cpp" />
+    <ClCompile Include="Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Seek.h" />
     <ClInclude Include="SteeringBehaviour.h" />
     <ClInclude Include="SteeringForce.h" />
+    <ClInclude Include="Wander.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MathLibrary\MathLibrary.vcxproj">
