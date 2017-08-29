@@ -25,14 +25,23 @@ bool Application2D::startup() {
 	m_cameraY = 0;
 	m_timer = 0;
 
-	m_agentPos = {50, 50};
-	m_mousePos.x = aie::Input::getInstance()->getMouseX(); //{(float)aie::Input::getInstance()->getMouseX(), (float)aie::Input::getInstance()->getMouseY()};
-	m_mousePos.y = aie::Input::getInstance()->getMouseY();
+	m_agentPos = {600, 600};
+	m_followPos = {500, 500};
+	m_fleePos = {500, 500};
+	//m_mousePos.x = aie::Input::getInstance()->getMouseX(); //{(float)aie::Input::getInstance()->getMouseX(), (float)aie::Input::getInstance()->getMouseY()};
+	//m_mousePos.y = aie::Input::getInstance()->getMouseY();
+	
 	m_agentTEST = new Agent(m_shipTexture, m_agentPos, m_2dRenderer);
+	m_followAgent = new Agent(m_shipTexture, m_followPos ,m_2dRenderer);
+	m_fleeAgent = new Agent(m_shipTexture, m_fleePos, m_2dRenderer);
+
 	m_keyboardControlBehav = new KeyboardControler(m_agentTEST);
-	m_seekBehav = new Seek(m_agentTEST, m_mousePos);
-	//m_agentTEST->addBehaviour(m_keyboardControlBehav);
-	m_agentTEST->addBehaviour(m_seekBehav);
+	m_seekBehav = new Seek(m_followAgent, m_agentTEST);
+	m_fleeBehav = new Flee(m_fleeAgent, m_agentTEST);
+	
+	m_agentTEST->addBehaviour(m_keyboardControlBehav);
+	m_followAgent->addBehaviour(m_seekBehav);
+	m_fleeAgent->addBehaviour(m_fleeBehav);
 	return true;
 }
 
@@ -53,6 +62,8 @@ void Application2D::update(float deltaTime) {
 	//m_mousePos.x = aie::Input::getInstance()->getMouseX();
 	//m_mousePos.y = aie::Input::getInstance()->getMouseY();
 	m_agentTEST->Update(deltaTime);
+	m_followAgent->Update(deltaTime);
+	m_fleeAgent->Update(deltaTime);
 }
 
 void Application2D::draw() {
@@ -67,7 +78,8 @@ void Application2D::draw() {
 	m_2dRenderer->begin();
 
 	m_agentTEST->Draw();
-
+	m_followAgent->Draw();
+	m_fleeAgent->Draw();
 	// done drawing sprites
 	m_2dRenderer->end();
 }

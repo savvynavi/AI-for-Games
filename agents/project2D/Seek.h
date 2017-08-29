@@ -5,7 +5,7 @@
 class Seek: public IBehaviour{
 public:
 	Seek(Agent *agent, Agent *target);
-	Seek (Agent *agent, Vector2& target);
+	//Seek (Agent *agent, Vector2& target);
 	~Seek();
 	void Update(Agent *target, float dt);
 private:

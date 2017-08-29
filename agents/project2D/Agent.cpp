@@ -8,7 +8,7 @@ Agent::Agent(aie::Texture *texture, Vector2 &position, aie::Renderer2D *renderer
 	m_texture = texture;
 	m_velocity = {0, 0};
 	m_force = {0, 0};
-	m_maxVelocity = 50;
+	m_maxVelocity = 5000;
 }
 
 Agent::~Agent(){
@@ -51,7 +51,12 @@ void Agent::Update(float dt){
 	m_velocity += m_force * m_dt;
 	if(m_velocity.magnitude() > m_maxVelocity){
 		//fix norm so it isn't taking mag from the origin but in fact from the 2 vectors
-		m_velocity.normalise() *= m_maxVelocity;
+		//m_velocity.normalise() *= m_maxVelocity;
+
+		//non-jittery motion
+		float tmp = sqrt(pow(m_velocity.x - m_force.x, 2) + pow(m_velocity.x - m_force.x, 2));
+		m_velocity /= tmp;
+		m_velocity *= m_maxVelocity;
 	}
 	m_position += m_velocity * m_dt;
 	m_force = {0, 0};

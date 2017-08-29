@@ -19,17 +19,17 @@ void KeyboardControler::Update(Agent* agent, float dt){
 		m_forceDir = { 0, 100 };
 		m_agent->addForce(m_forceDir);
 	}
-	else if(m_input->isKeyDown(aie::INPUT_KEY_RIGHT)){
+	if(m_input->isKeyDown(aie::INPUT_KEY_RIGHT)){
 		m_moving = true;
 		m_forceDir = { 100, 0 };
 		m_agent->addForce (m_forceDir);
 	}
-	else if(m_input->isKeyDown(aie::INPUT_KEY_DOWN)){
+	if(m_input->isKeyDown(aie::INPUT_KEY_DOWN)){
 		m_moving = true;
 		m_forceDir = { 0, -100 };
 		m_agent->addForce (m_forceDir);
 	}
-	else if(m_input->isKeyDown(aie::INPUT_KEY_LEFT)){
+	if(m_input->isKeyDown(aie::INPUT_KEY_LEFT)){
 		m_moving = true;
 		m_forceDir = { -100, 0 };
 		m_agent->addForce (m_forceDir);
