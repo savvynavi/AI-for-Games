@@ -95,6 +95,7 @@
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="DijSearch.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
   </ItemGroup>
@@ -102,6 +103,7 @@
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="DijSearch.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
