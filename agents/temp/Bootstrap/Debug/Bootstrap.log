@@ -1,7 +1,18 @@
-﻿  gl_core_4_4.c
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+﻿  imgui_glfw3.cpp
+  Texture.cpp
+  SoundManager.cpp
+  Renderer2D.cpp
+  Input.cpp
+  Gizmos.cpp
+  Font.cpp
+  Audio.cpp
+  Application.cpp
+  imgui_draw.cpp
+  imgui.cpp
+  Generating Code...
+  gl_core_4_4.c
 libsndfile-1.lib(libsndfile-1.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 libsndfile-1.lib(libsndfile-1.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 OpenAL32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 OpenAL32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-  Bootstrap.vcxproj -> C:\Users\s170841\Documents\Visual Studio 2015\Projects\AI for Games\agents\temp\Bootstrap\Debug\Bootstrap.lib
+  Bootstrap.vcxproj -> C:\Users\Microwave-chan\Documents\AIE\AI for Games\agents\temp\Bootstrap\Debug\Bootstrap.lib

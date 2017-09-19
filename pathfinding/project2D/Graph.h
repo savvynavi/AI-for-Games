@@ -2,7 +2,6 @@
 #include"Node.h"
 #include"Vector2.h"
 #include<vector>
-#include<map>
 
 class Graph{
 public:
@@ -10,7 +9,8 @@ public:
 	~Graph();
 	void addNode(Node* node);
 	void removeNode(Node* node);
+	bool nodeCheck(Node* node);
 private:
-	//change to map when op works/decided on id
 	std::vector<Node*> m_nodes;
 };
+
