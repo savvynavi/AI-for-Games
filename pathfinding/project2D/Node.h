@@ -11,9 +11,10 @@ public:
 
 	//bool checkEdge(Edge* edge);
 	//void addEdge(Edge* edge);
-	bool checkEdge();
+	bool checkEdge(Node *node);
 	void addEdge(Node* node);
-	std::vector<Edge*> getEdges(Node* node);
+	std::vector<Edge*> getEdges();
+	void removeEdge(Node *other);
 	float getGScore();
 	std::string getData();
 	//are these 2 needed?

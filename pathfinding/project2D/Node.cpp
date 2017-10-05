@@ -26,9 +26,9 @@ Node::~Node(){
 //}
 
 //checks if the edge has been added before for this node
-bool Node::checkEdge(){
+bool Node::checkEdge(Node *other){
 	for(int i = 0; i < this->m_connections.size(); i++){
-		if(m_connections[i]->getTarget() == this){
+		if(m_connections[i]->getTarget() == other){
 			return true;
 		}
 	}
@@ -37,13 +37,22 @@ bool Node::checkEdge(){
 
 //if both don't have an edge going between them, it will add 2 new edge to create an undirected link
 void Node::addEdge(Node* node){
-	if((this->checkEdge() == false) && (node->checkEdge() == false)){
+	if((this->checkEdge(node) == false) && (node->checkEdge(this) == false)){
 		this->m_connections.push_back(new Edge(node, 1));
-		node->getEdges(this).push_back(new Edge(this, 1));
+		node->getEdges().push_back(new Edge(this, 1));
 	}
 }
 
-std::vector<Edge*> Node::getEdges(Node* node){
+//takes in a node and removes the connections to/from it
+void Node::removeEdge(Node *other){
+	for(int i = 0; i < this->m_connections.size(); i++){
+		if(m_connections[i]->getTarget() == other){
+			this->m_connections.erase(m_connections.begin() + i);
+		}
+	}
+}
+
+std::vector<Edge*> Node::getEdges(){
 	return m_connections;
 }
 
