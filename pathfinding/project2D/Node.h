@@ -25,6 +25,8 @@ private:
 	float m_gScore;
 	Node* m_parent;
 	std::string m_data;
+	//maybe cange to 2d vector or array so that indexes aren't terrible
 	std::vector<Edge*> m_connections;
+	//std::vector<std::vector<Node*>> m_connections;
 };
 
