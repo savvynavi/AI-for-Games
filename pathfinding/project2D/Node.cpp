@@ -1,7 +1,7 @@
 #include "Node.h"
 
 Node::Node(std::string data) : m_data(data){
-
+	
 }
 
 Node::~Node(){
@@ -62,16 +62,20 @@ float Node::getGScore(){
 	return m_gScore;
 }
 
+void Node::setGScore(float gScore){
+	m_gScore = gScore;
+}
+
 std::string Node::getData(){
 	return m_data;
 }
 
-////returns the parent to this node
-//Node* Node::getParent(){
-//	return m_parent;
-//}
-//
-////sets the parent of this node
-//void Node::setParent(Node* node){
-//
-//}
+//returns the parent to this node
+Node* Node::getParent(){
+	return m_parent;
+}
+
+//sets the parent of this node
+void Node::setParent(Node* node){
+	m_parent = node;
+}

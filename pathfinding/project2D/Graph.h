@@ -2,6 +2,7 @@
 #include"Node.h"
 #include"Vector2.h"
 #include<vector>
+#include<list>
 
 class Graph{
 public:
@@ -16,6 +17,9 @@ public:
 	void setGraph();
 	void printGraph();
 	void setNodes();
+	void reset();
+
+	std::list<Node*> calculatePath(Node* start, Node* end);
 private:
 	std::vector<Node*> m_nodes;
 	static const int m_size = 3;
@@ -25,5 +29,4 @@ private:
 		{ "1", "0", "0" },
 		{ "1", "1", "1" }
 	};
-
 };

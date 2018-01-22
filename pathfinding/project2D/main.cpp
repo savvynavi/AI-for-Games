@@ -17,22 +17,14 @@ int main() {
 	//delete app;
 	//Graph test;
 
-	const int size = 3;
+	//const int size = 3;
+	//const char* map[size][size] = {
+	//	{"1", "1", "1" },
+	//	{ "1", "0", "0" },
+	//	{ "1", "1", "1" }
+	//};
 
-	const char* map[size][size] = {
-		{"1", "1", "1" },
-		{ "1", "0", "0" },
-		{ "1", "1", "1" }
-	};
 
-	//Node* testNode();
-
-	/*for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
-			Node* testNode = new Node("a");
-			test.addNode(testNode);
-		}
-	}*/
 	Graph test;
 	test.setNodes();
 	vector<Node*> testNodes = test.getNodes();
@@ -45,34 +37,9 @@ int main() {
 		cout << endl;
 	}
 
-	//for (int i = 0; i < size; i++) {
-	//	for (int j = 0; j < size; j++) {
-	//		Node* testNode = new Node("a");
-	//		nodes->push_back();
-	//	}
-	//}
-
-
-
-
-
-
-
-
-	//test.printData();
-
-	//for (int i = 0; i < size; i++) {
-	//	for (int j = 0; j < size; j++) {
-	//		if(map[i][j] == "1" && (map[i+1][j] == "1")){
-	//			//nodes[i]->addEdge(&nodes[i+1][j]);
-	//			test.getNodes()[i]->addEdge(test.getNodes()[i + 1]);
-	//		}
-	//	}
-	//}
-
-	/*for (int i = 0; i < nodes.size(); i++) {
-		std::cout << "Node: " << test.getNodes()[i] << std::endl;
-	}*/
+	//float gscoretst = test.getNodes()[2]->getEdges()[0]->getCost();
+	//cout << gscoretst << endl;
+	test.calculatePath(test.getNodes()[1], test.getNodes()[6]);
 
 	system("pause");
 	return 0;

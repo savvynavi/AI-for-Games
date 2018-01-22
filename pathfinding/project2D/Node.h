@@ -16,10 +16,11 @@ public:
 	std::vector<Edge*> getEdges();
 	void removeEdge(Node *other);
 	float getGScore();
+	void setGScore(float gScore);
 	std::string getData();
 	//are these 2 needed?
-	//Node* getParent();
-	//void setParent(Node* node);
+	Node* getParent();
+	void setParent(Node* node);
 private:
 	Vector2 m_position;
 	float m_gScore;

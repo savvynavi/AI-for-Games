@@ -10,6 +10,6 @@ public:
 	float getCost();
 private:
 	Node* m_target;
-	float m_cost;
+	float m_cost = 1;
 };
 

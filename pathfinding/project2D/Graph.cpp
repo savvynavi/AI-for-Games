@@ -1,5 +1,7 @@
 #include "Graph.h"
 #include<iostream>
+#include<algorithm>
+#include<list>
 
 Graph::Graph(){
 
@@ -106,12 +108,79 @@ void Graph::setNodes() {
 			}
 		}
 	}
+}
+
+std::list<Node*> Graph::calculatePath(Node* start, Node* end){
+	
+	std::list<Node*> pathNodes;
+	float gScore = 0;
+	std::list<Node*> openList;
+	std::list<Node*> closedList;
+
+	if(start == nullptr || end == nullptr){
+		return pathNodes;
+	}
+
+	openList.push_back(start);
+	this->reset();
+	start->setGScore(0);
+
+	while(openList.size() > 0){
+		Node* currentNode = openList.front();
+		openList.pop_front();
 
 
-	//for(int i = 0; i < m_nodes.size() - 3; i++) {
-	//	if(m_nodes[i]->getData() == "1" && m_nodes[i + 3]->getData() == "1"){
-	//		m_nodes[i]->addEdge(m_nodes[i + 3]);
-	//	}
-	//}
 
+		for(int i = 0; i < currentNode->getEdges().size(); i++){
+
+			// make sure the connectioon is not in the closed list
+			std::list<Node*>::iterator inClosedList;
+			Node* currentTarget = currentNode->getEdges()[i]->getTarget();
+			inClosedList = std::find(closedList.begin(), closedList.end(), currentTarget);
+			
+			if(inClosedList == closedList.end()){
+				Node* endTarget = currentNode->getEdges()[i]->getTarget();
+				if(endTarget != end){
+					//calculates this gScore and compares to current one, if it's smaller it will become the new gScore and will set nodes up again
+					float gScoreTmp = currentNode->getGScore() + currentNode->getEdges()[i]->getCost();
+					//existing cost to get to the node 
+					gScore = endTarget->getGScore();
+
+					//if this is the best route so far
+					if(gScoreTmp < gScore){
+						endTarget->setParent(currentNode);
+						endTarget->setGScore(gScoreTmp);
+
+						//checks to see if the end node is in the queue, if not it adds it
+						std::list<Node*>::iterator isEndThere;
+						isEndThere = std::find(openList.begin(), openList.end(), endTarget);
+						if(isEndThere == openList.end()){
+							openList.push_back(endTarget);
+						}
+					}
+				}else{
+					//add end to the list, then add current node, step back through parents until null
+					pathNodes.push_front(end);
+					pathNodes.push_front(currentNode);
+					Node* tmpCurrentNode = currentNode;
+					while(tmpCurrentNode->getParent() != nullptr){
+						pathNodes.push_front(tmpCurrentNode->getParent());
+						tmpCurrentNode = tmpCurrentNode->getParent();
+					}
+				}
+			}
+		}
+		// add current node to closed list
+		closedList.push_back(currentNode);
+	}
+
+	return pathNodes;
+}
+
+//resets the values for pathfinding
+void Graph::reset(){
+	for(int i = 0; i < this->m_nodes.size(); i++){
+		this->m_nodes[i]->setGScore(FLT_MAX);
+		this->m_nodes[i]->setParent(nullptr);
+	}
 }
