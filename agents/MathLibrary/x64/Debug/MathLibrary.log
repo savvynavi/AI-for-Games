@@ -1,0 +1,11 @@
+﻿  Vector4.cpp
+  Vector3.cpp
+  Vector2.cpp
+  Matrix4.cpp
+  Matrix3.cpp
+  Matrix2.cpp
+  Generating Code...
+c:\users\microwave-chan\documents\aie\math for games\assignments\mathlibrary\mathlibrary\matrix2.cpp(84): warning C4715: 'Matrix2::operator[]': not all control paths return a value
+c:\users\microwave-chan\documents\aie\math for games\assignments\mathlibrary\mathlibrary\matrix3.cpp(132): warning C4715: 'Matrix3::operator[]': not all control paths return a value
+c:\users\microwave-chan\documents\aie\math for games\assignments\mathlibrary\mathlibrary\matrix4.cpp(151): warning C4715: 'Matrix4::operator[]': not all control paths return a value
+  MathLibrary.vcxproj -> C:\Users\Microwave-chan\Documents\AIE\Math for Games\Assignments\MathLibrary\x64\Debug\MathLibrary.lib

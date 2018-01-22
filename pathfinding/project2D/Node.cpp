@@ -37,9 +37,10 @@ bool Node::checkEdge(Node *other){
 
 //if both don't have an edge going between them, it will add 2 new edge to create an undirected link
 void Node::addEdge(Node* node){
-	if((this->checkEdge(node) == false) && (node->checkEdge(this) == false)){
+	if((this->checkEdge(node) == false) || (node->checkEdge(this) == false)){
 		this->m_connections.push_back(new Edge(node, 1));
-		node->getEdges().push_back(new Edge(this, 1));
+		//node->getEdges().push_back(new Edge(this, 1));
+		node->addEdge(this);
 	}
 }
 

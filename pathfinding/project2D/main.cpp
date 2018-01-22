@@ -45,7 +45,6 @@ int main() {
 		cout << endl;
 	}
 
-
 	//for (int i = 0; i < size; i++) {
 	//	for (int j = 0; j < size; j++) {
 	//		Node* testNode = new Node("a");

@@ -84,7 +84,7 @@ void Graph::setNodes() {
 	for (int i = 0; i < m_size; i++) {
 		for (int j = 0; j < m_size; j++) {
 			if(m_ascii[i][j] == "1"){
-				Node* tmpNode = new Node("1"); //todo pass in position eg i * 32 j*32 to get basic coords without hardcoding them
+				Node* tmpNode = new Node(std::to_string((i*m_size)+j)); //todo pass in position eg i * 32 j*32 to get basic coords without hardcoding them
 				m_nodes.push_back(tmpNode);
 				nodeGrid[i][j] = tmpNode;
 			}else{
@@ -103,7 +103,6 @@ void Graph::setNodes() {
 			if(j < m_size-1 && nodeGrid[i][j] && nodeGrid[i][j+1]){
 				//add vertical edges
 				nodeGrid[i][j]->addEdge(nodeGrid[i][j + 1]);
-
 			}
 		}
 	}
