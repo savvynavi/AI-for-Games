@@ -9,8 +9,6 @@ public:
 	Node(std::string data);
 	~Node();
 
-	//bool checkEdge(Edge* edge);
-	//void addEdge(Edge* edge);
 	bool checkEdge(Node *node);
 	void addEdge(Node* node);
 	std::vector<Edge*> getEdges();
@@ -18,7 +16,10 @@ public:
 	float getGScore();
 	void setGScore(float gScore);
 	std::string getData();
-	//are these 2 needed?
+
+	void setPosition(Vector2 pos);
+	Vector2 getPosition();
+
 	Node* getParent();
 	void setParent(Node* node);
 private:
@@ -26,8 +27,6 @@ private:
 	float m_gScore;
 	Node* m_parent;
 	std::string m_data;
-	//maybe cange to 2d vector or array so that indexes aren't terrible
 	std::vector<Edge*> m_connections;
-	//std::vector<std::vector<Node*>> m_connections;
 };
 

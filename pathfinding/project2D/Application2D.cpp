@@ -22,15 +22,18 @@ bool Application2D::startup() {
 
 	m_audio = new aie::Audio("./audio/powerup.wav");
 
-	m_cameraX = 0;
-	m_cameraY = 0;
+	m_cameraX = (-1280 / 2);
+	m_cameraY = (-720 / 2);
 	m_timer = 0;
+
+	//graph stuff
+	m_graph.setNodes();
+	m_agent = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(3));
 
 	return true;
 }
 
 
-//2 sheets changing depending on here path goes using imgui
 void Application2D::shutdown() {
 	
 	delete m_audio;
@@ -47,6 +50,7 @@ void Application2D::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
+	m_agent->Update(deltaTime);
 }
 
 void Application2D::draw() {
@@ -59,6 +63,9 @@ void Application2D::draw() {
 
 	// begin drawing sprites
 	m_2dRenderer->begin();
+
+	m_graph.Draw(m_2dRenderer);
+	m_agent->Draw();
 
 	// done drawing sprites
 	m_2dRenderer->end();

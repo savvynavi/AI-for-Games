@@ -79,32 +79,46 @@ void Graph::printGraph() {
 }
 
 void Graph::setNodes() {
-
 	Node* nodeGrid[m_size][m_size];
 
 	//create nodes with either 1 or 0 lable
 	for (int i = 0; i < m_size; i++) {
 		for (int j = 0; j < m_size; j++) {
 			if(m_ascii[i][j] == "1"){
-				Node* tmpNode = new Node(std::to_string((i*m_size)+j)); //todo pass in position eg i * 32 j*32 to get basic coords without hardcoding them
+				Node* tmpNode = new Node(std::to_string((i * m_size) + j));
 				m_nodes.push_back(tmpNode);
 				nodeGrid[i][j] = tmpNode;
 			}else{
-				nodeGrid[i][j] = NULL;
+				Node* tmpNode = new Node("NULL");
+				m_nodes.push_back(tmpNode);
+				nodeGrid[i][j] = tmpNode;
 			}
+			//sets the position of the nodes in a coord on the app
+			nodeGrid[i][j]->setPosition(Vector2(j * 32, i * 32));
 		}
 	}
 
-	////creates edges between nodes up/down(left/right needs more checks)
+	//sets position in reverse so it draws correctly (eg not upsidedown)
+	//for (int i = m_size - 1; i >= 0; i--) {
+	//	for (int j = 0; j < m_size; j++) {
+	//		nodeGrid[i][j]->setPosition(Vector2(j * 32, i * 32));
+	//	}
+	//}
+
+	////creates edges between nodes up/down(left/right needs more checks) - Now it doesn't add edges to invalid "Null" nodes even though they're stored in m_nodes
 	for (int i = 0; i < m_size; i++) {
 		for (int j = 0; j < m_size; j++) {
 			if (i < m_size - 1 && nodeGrid[i][j] && nodeGrid[i + 1][j]){
 				//add in horizontal edges
-				nodeGrid[i][j]->addEdge(nodeGrid[i + 1][j]);
+				if (nodeGrid[i][j]->getData() != "NULL" && nodeGrid[i + 1][j]->getData() != "NULL"){
+					nodeGrid[i][j]->addEdge(nodeGrid[i + 1][j]);
+				}
 			}
 			if(j < m_size-1 && nodeGrid[i][j] && nodeGrid[i][j+1]){
 				//add vertical edges
-				nodeGrid[i][j]->addEdge(nodeGrid[i][j + 1]);
+				if (nodeGrid[i][j]->getData() != "NULL" && nodeGrid[i][j + 1]->getData() != "NULL") {
+					nodeGrid[i][j]->addEdge(nodeGrid[i][j + 1]);
+				}
 			}
 		}
 	}
@@ -182,5 +196,23 @@ void Graph::reset(){
 	for(int i = 0; i < this->m_nodes.size(); i++){
 		this->m_nodes[i]->setGScore(FLT_MAX);
 		this->m_nodes[i]->setParent(nullptr);
+	}
+}
+
+Node* Graph::getSingleNode(int id) {
+	return m_nodes[id];
+}
+
+//draws a box differeing in colour depending if traversable or not
+void Graph::Draw(aie::Renderer2D* renderer) {
+	m_renderer = renderer;
+	//draws the nodes at their set pos
+	for (int i = 0; i < m_nodes.size(); i++) {
+		if (m_nodes[i]->getData() == "NULL"){
+			m_renderer->setRenderColour(1, 1, 1);
+		}else {
+			m_renderer->setRenderColour(0.5f, 0, 0.5f);
+		}
+		m_renderer->drawBox(m_nodes[i]->getPosition().x, m_nodes[i]->getPosition().y, 30.0f, 30.0f);
 	}
 }

@@ -4,6 +4,9 @@
 #include "Renderer2D.h"
 #include "Audio.h"
 
+#include "Graph.h"
+#include "Agent.h"
+
 class Application2D : public aie::Application {
 public:
 
@@ -23,6 +26,9 @@ protected:
 	aie::Texture*		m_shipTexture;
 	aie::Font*			m_font;
 	aie::Audio*			m_audio;
+
+	Graph				m_graph;
+	Agent*				m_agent;
 
 	float m_cameraX, m_cameraY;
 	float m_timer;

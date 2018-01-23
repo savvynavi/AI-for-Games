@@ -7,23 +7,6 @@ Node::Node(std::string data) : m_data(data){
 Node::~Node(){
 
 }
-////possible delete or leave as overloads?
-//checks to see if the edge has already been added
-//bool Node::checkEdge(Edge* edge){
-//	for(int i = 0; i < m_connections.size(); i++){
-//		if(m_connections[i] == edge){
-//			return true;
-//		}
-//	}
-//	return false;
-//}
-//
-////if edge is new, adds it to vector
-//void Node::addEdge(Edge* edge){
-//	if(this->checkEdge(edge) == false){
-//		m_connections.push_back(edge);
-//	}
-//}
 
 //checks if the edge has been added before for this node
 bool Node::checkEdge(Node *other){
@@ -68,6 +51,14 @@ void Node::setGScore(float gScore){
 
 std::string Node::getData(){
 	return m_data;
+}
+
+void Node::setPosition(Vector2 pos) {
+	m_position = pos;
+}
+
+Vector2 Node::getPosition() {
+	return m_position;
 }
 
 //returns the parent to this node

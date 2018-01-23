@@ -1,11 +1,1 @@
-﻿  Vector4.cpp
-  Vector3.cpp
-  Vector2.cpp
-  Matrix4.cpp
-  Matrix3.cpp
-  Matrix2.cpp
-  Generating Code...
-c:\users\microwave-chan\documents\aie\ai for games\agents\mathlibrary\matrix2.cpp(84): warning C4715: 'Matrix2::operator[]': not all control paths return a value
-c:\users\microwave-chan\documents\aie\ai for games\agents\mathlibrary\matrix3.cpp(132): warning C4715: 'Matrix3::operator[]': not all control paths return a value
-c:\users\microwave-chan\documents\aie\ai for games\agents\mathlibrary\matrix4.cpp(151): warning C4715: 'Matrix4::operator[]': not all control paths return a value
-  MathLibrary.vcxproj -> C:\Users\Microwave-chan\Documents\AIE\AI for Games\agents\Debug\MathLibrary.lib
+﻿  MathLibrary.vcxproj -> C:\Users\s170841\Documents\AI for Games\agents\Debug\MathLibrary.lib
