@@ -22,11 +22,22 @@ public:
 	std::list<Node*> calculatePath(Node* start, Node* end);
 private:
 	std::vector<Node*> m_nodes;
-	static const int m_size = 3;
-	
+	/*static const int m_size = 3;
+
 	const char *m_ascii[m_size][m_size] = {
 		{ "1", "1", "1" },
 		{ "1", "0", "0" },
 		{ "1", "1", "1" }
+	};*/
+
+	static const int m_size = 7;
+	const char *m_ascii[m_size][m_size] = {
+		{"1", "1", "1", "1", "1", "1", "1"},
+		{"1", "0", "1", "0", "0", "0", "0"},
+		{"1", "0", "1", "1", "0", "0", "0"},
+		{"1", "0", "0", "0", "0", "1", "0"},
+		{"1", "0", "1", "1", "1", "1", "1"},
+		{"1", "1", "1", "0", "1", "0", "1"},
+		{"0", "0", "0", "0", "1", "1", "1"}
 	};
 };

@@ -39,7 +39,7 @@ int main() {
 
 	//float gscoretst = test.getNodes()[2]->getEdges()[0]->getCost();
 	//cout << gscoretst << endl;
-	test.calculatePath(test.getNodes()[1], test.getNodes()[6]);
+	test.calculatePath(test.getNodes()[27], test.getNodes()[8]);
 
 	system("pause");
 	return 0;
