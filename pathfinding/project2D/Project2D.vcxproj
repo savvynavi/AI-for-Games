@@ -99,6 +99,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Seek.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
@@ -106,7 +107,9 @@
     <ClInclude Include="DijSearch.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="IBehaviour.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Seek.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MathLibrary\MathLibrary.vcxproj">

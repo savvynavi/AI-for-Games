@@ -1,6 +1,7 @@
 #include"Agent.h"
 #include"Node.h"
 #include"Graph.h"
+#include"Seek.h"
 
 Agent::Agent(Graph graph, aie::Renderer2D* renderer, Node* startPos){
 	m_graph = graph;
@@ -23,10 +24,24 @@ void Agent::setPos(Node* currentPos) {
 	m_currentPos = currentPos;
 }
 
+float Agent::getMaxVelocity(){
+	return maxVelocity;
+}
+
+void Agent::addForce(Vector2& force){
+	m_force += force;
+}
+
+void Agent::addBehaviour(IBehaviour* behaviour){
+	m_behaviours.push_back(behaviour);
+}
+
 //calls the graph pathfinder using it's own node pos + given end pos, tries to form a list of nodes to path it there
 void Agent::setPath(Node* endPoint) {
 	m_endPoint = endPoint;
 	m_path = m_graph.calculatePath(m_currentPos, m_endPoint);
+	m_seekPathBehav = new Seek(this, m_endPoint);
+	this->addBehaviour(m_seekPathBehav);
 }
 
 //returns the path it currently has
@@ -37,7 +52,11 @@ std::list<Node*> Agent::getPath() {
 //moves the agent around each frame
 void Agent::Update(float dt) {
 	//loop through m_path to move the agent towards the end each frame based on pos and velocity
-	this->setPath(m_graph.getSingleNode(26));
+	m_dt = dt;
+	this->setPath(m_graph.getSingleNode(8));
+	for(auto it = m_behaviours.begin(); it != m_behaviours.end(); it++){
+		(*it)->Update(this, m_dt);
+	}
 
 	//move towards bottom of m_path, then pop_back
 	std::list<Node*>::iterator it;

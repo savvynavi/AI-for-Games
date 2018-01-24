@@ -4,6 +4,8 @@
 #include "Vector2.h"
 #include "Graph.h"
 class Node;
+class IBehaviour;
+class Seek;
 
 //takes in a position in the graph and draws a circle there, draw function will draw it's path plus the circle at new position
 //has a function that calls pathfinder in graph, stores it in its own list
@@ -14,8 +16,12 @@ public:
 
 	Node* getPos();
 	void setPos(Node* currentPos);
+	float getMaxVelocity();
+	void addForce(Vector2& force);
+	void addBehaviour(IBehaviour* behaviour);
 	void setPath(Node* endPoint);
 	std::list<Node*> getPath();
+
 	void Update(float dt);
 	void Draw();
 protected:
@@ -25,6 +31,7 @@ protected:
 	Node* m_currentPos;
 	Node* m_endPoint;
 
+	//agent movement
 	Graph m_graph;
 	float maxVelocity;
 	Vector2 m_velocity;
@@ -32,7 +39,8 @@ protected:
 
 	//seek bahaviour
 	Node* targetPos;
-
+	std::list<IBehaviour*> m_behaviours;
+	Seek* m_seekPathBehav;
 };
 
 //make it move towards front of m_path each frame, when it gets close to that point, pop off and set movement towards next ones pos

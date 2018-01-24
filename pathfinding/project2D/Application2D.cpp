@@ -28,7 +28,7 @@ bool Application2D::startup() {
 
 	//graph stuff
 	m_graph.setNodes();
-	m_agent = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(3));
+	m_agent = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(2));
 
 	return true;
 }

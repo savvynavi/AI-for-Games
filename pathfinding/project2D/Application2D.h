@@ -6,6 +6,7 @@
 
 #include "Graph.h"
 #include "Agent.h"
+#include "Seek.h"
 
 class Application2D : public aie::Application {
 public:
@@ -29,6 +30,7 @@ protected:
 
 	Graph				m_graph;
 	Agent*				m_agent;
+	Seek*				m_seekBehav;
 
 	float m_cameraX, m_cameraY;
 	float m_timer;
