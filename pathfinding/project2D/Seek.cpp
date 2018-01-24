@@ -6,32 +6,41 @@
 Seek::Seek(Agent* agent, Node* targetNode){
 	m_target = targetNode;
 	m_agent = agent;
-	//m_targetPos = m_target->getPosition();
-	//m_currentPos = m_agent->getPos()->getPosition();
+	m_firstRun = true;
 }
 
 Seek::~Seek(){
 
 }
 
+float Seek::distance(Vector2 &start, Vector2 &end) {
+	return sqrt(((start.x - end.x) * (start.x - end.x)) + ((start.y - end.y) * (start.y - end.y)));
+}
+
 void Seek::Update(Agent* agent, float dt){
-	m_currentPath = m_agent->getPath();
-
-	m_targetPos = m_currentPath.front()->getPosition();
-	m_currentPos = m_agent->getPos()->getPosition();
-
-	//when agent is close to current target, and if the path list isn't empty, it pops the front off so the next node will become the target position
-	if(abs(m_agent->getPos()->getPosition().x - m_target->getPosition().x) < 5.0f && abs(m_agent->getPos()->getPosition().y - m_target->getPosition().y) < 5.0f && m_currentPath.size() < 0){
-		m_currentPath.pop_front();
-		m_targetPos = m_currentPath.front()->getPosition();
+	//sets the path once so it doesn't keep resetting
+	if (m_firstRun == true) {
+		m_agent->getPath().pop_front();
+		m_firstRun = false;
 	}
-	
 
-	//Vector2 target(m_targetPos);
-	//Vector2 position(m_currentPos);
+	//if there is no path, returns
+	if (m_agent->getPath().size() <= 0) {
+		return;
+	}
 
+	m_targetPos = m_agent->getPath().front()->getPosition();
+	m_currentPos = m_agent->getAgentPos();
 	Vector2 direction = m_targetPos - m_currentPos;
 
 	direction.normalise() *= m_agent->getMaxVelocity() * dt;
-	m_agent->addForce(direction * 100);
+	m_agent->addForce(direction * 200);
+
+	//when within certain distance, pops current target and changes to next one in list as long as there are nodes left to traverse
+	if (distance(m_currentPos, m_targetPos) < 5.0f && m_agent->getPath().size() > 0) {
+		m_agent->getPath().pop_front();
+		if (m_agent->getPath().size() > 0) {
+			m_targetPos = m_agent->getPath().front()->getPosition();
+		}
+	}
 }

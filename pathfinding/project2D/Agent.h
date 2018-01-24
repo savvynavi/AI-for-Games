@@ -16,11 +16,13 @@ public:
 
 	Node* getPos();
 	void setPos(Node* currentPos);
+	void setAgentPos(Vector2 agentPosition);
+	Vector2 getAgentPos();
 	float getMaxVelocity();
 	void addForce(Vector2& force);
 	void addBehaviour(IBehaviour* behaviour);
 	void setPath(Node* endPoint);
-	std::list<Node*> getPath();
+	std::list<Node*>& getPath();
 
 	void Update(float dt);
 	void Draw();
@@ -36,12 +38,10 @@ protected:
 	float maxVelocity;
 	Vector2 m_velocity;
 	Vector2 m_force;
+	Vector2 m_agentPos;
 
 	//seek bahaviour
 	Node* targetPos;
 	std::list<IBehaviour*> m_behaviours;
 	Seek* m_seekPathBehav;
 };
-
-//make it move towards front of m_path each frame, when it gets close to that point, pop off and set movement towards next ones pos
-//(seperate this oput into behav class sometime)

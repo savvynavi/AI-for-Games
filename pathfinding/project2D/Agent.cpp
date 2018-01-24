@@ -2,14 +2,18 @@
 #include"Node.h"
 #include"Graph.h"
 #include"Seek.h"
+#include<stdlib.h>
+#include<time.h>
 
 Agent::Agent(Graph graph, aie::Renderer2D* renderer, Node* startPos){
 	m_graph = graph;
 	m_renderer = renderer;
 	m_currentPos = startPos;
-	maxVelocity = 5000;
+	m_agentPos = m_currentPos->getPosition();
+	maxVelocity = 50;
 	m_velocity = { 0, 0 };
 	m_force = { 0, 0 };
+	srand(time(NULL));
 }
 
 Agent::~Agent() {
@@ -22,6 +26,14 @@ Node* Agent::getPos() {
 
 void Agent::setPos(Node* currentPos) {
 	m_currentPos = currentPos;
+}
+
+void Agent::setAgentPos(Vector2 agentPosition) {
+	m_agentPos = agentPosition;
+}
+
+Vector2 Agent::getAgentPos() {
+	return m_agentPos;
 }
 
 float Agent::getMaxVelocity(){
@@ -39,13 +51,24 @@ void Agent::addBehaviour(IBehaviour* behaviour){
 //calls the graph pathfinder using it's own node pos + given end pos, tries to form a list of nodes to path it there
 void Agent::setPath(Node* endPoint) {
 	m_endPoint = endPoint;
+	//std::vector<Node*>::iterator it;
+
+	//make this so that it can pathfind from where the agent currently is
+	Node* tmpPos = nullptr;
+	for (int i = 0; i < m_graph.getNodes().size(); i++) {
+		if (m_graph.getNodes()[i]->getPosition() == this->getPos()->getPosition()) {
+			tmpPos = m_graph.getNodes()[i];
+			break;
+		}
+	}
+
 	m_path = m_graph.calculatePath(m_currentPos, m_endPoint);
 	m_seekPathBehav = new Seek(this, m_endPoint);
 	this->addBehaviour(m_seekPathBehav);
 }
 
 //returns the path it currently has
-std::list<Node*> Agent::getPath() {
+std::list<Node*>& Agent::getPath() {
 	return m_path;
 }
 
@@ -53,18 +76,22 @@ std::list<Node*> Agent::getPath() {
 void Agent::Update(float dt) {
 	//loop through m_path to move the agent towards the end each frame based on pos and velocity
 	m_dt = dt;
-	this->setPath(m_graph.getSingleNode(8));
+	
+	//if there currently isn't a path, it creates one
+	//currently doens't care where start point is, breaks the pathfinding 
+	if (m_path.size() <= 0) {
+		int randIndex = rand() % m_graph.getNodes().size() + 1;
+		while (m_graph.getSingleNode(randIndex)->getData() == "NULL") {
+			randIndex = rand() % m_graph.getNodes().size() + 1;
+		}
+		this->setPath(m_graph.getSingleNode(randIndex));
+	}
+	
+	this->setPos(this->getPath().front());
+
+	//loops through behaviour list and calls update on each one
 	for(auto it = m_behaviours.begin(); it != m_behaviours.end(); it++){
 		(*it)->Update(this, m_dt);
-	}
-
-	//move towards bottom of m_path, then pop_back
-	std::list<Node*>::iterator it;
-	for (it = m_path.begin(); it != m_path.end(); ++it) {
-		//move towards
-		if ("within some buffer") {
-			//pop-back, change target
-		}
 	}
 
 	//movement/speed controls
@@ -74,16 +101,17 @@ void Agent::Update(float dt) {
 		m_velocity /= tmp;
 		m_velocity *= maxVelocity;
 	}
-	Vector2 tmpPosVector = m_currentPos->getPosition();
+
+	Vector2 tmpPosVector = m_agentPos;
 	tmpPosVector += m_velocity * m_dt;
-	m_currentPos->setPosition(tmpPosVector);
+	this->setAgentPos(tmpPosVector);
 	m_force = { 0, 0 };
 }
 
 //draws the agent + path line
 void Agent::Draw() {
 	m_renderer->setRenderColour(0, 0, 1);
-	m_renderer->drawCircle(m_currentPos->getPosition().x, m_currentPos->getPosition().y, 15);
+	m_renderer->drawCircle(m_agentPos.x, m_agentPos.y, 15);
 	m_renderer->setRenderColour(1, 0, 0);
 	std::list<Node*>::iterator it;
 	//loops over path and draws a line from start node to end node

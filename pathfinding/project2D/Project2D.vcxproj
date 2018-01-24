@@ -96,6 +96,7 @@
     <ClCompile Include="Application2D.cpp" />
     <ClCompile Include="DijSearch.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="flee.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Application2D.h" />
     <ClInclude Include="DijSearch.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="flee.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="IBehaviour.h" />
     <ClInclude Include="Node.h" />

@@ -9,11 +9,13 @@ class Seek: public IBehaviour{
 public:
 	Seek(Agent* agent, Node* targetNode);
 	~Seek();
+	float distance(Vector2 &start, Vector2 &end);
 	void Update(Agent* agent, float dt);
 private:
 	Node* m_target;
 	Agent* m_agent;
 	Vector2 m_targetPos;
 	Vector2 m_currentPos;
-	std::list<Node*> m_currentPath;
+	std::list<Node*> *m_currentPath;
+	bool m_firstRun;
 };

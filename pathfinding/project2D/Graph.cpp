@@ -143,8 +143,6 @@ std::list<Node*> Graph::calculatePath(Node* start, Node* end){
 		Node* currentNode = openList.front();
 		openList.pop_front();
 
-
-
 		for(int i = 0; i < currentNode->getEdges().size(); i++){
 
 			// make sure the connectioon is not in the closed list

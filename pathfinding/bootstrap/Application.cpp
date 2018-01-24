@@ -112,7 +112,8 @@ void Application::run(const char* title, int width, int height, bool fullscreen)
 			// clear imgui
 			ImGui_NewFrame();
 
-			update(float(deltaTime));
+			//if framerafe issues change back to update(float(deltaTime))
+			update(1.0f / 60.0f);
             SoundManager::getInstance()->update();
 			draw();
 
