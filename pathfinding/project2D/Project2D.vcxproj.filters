@@ -54,6 +54,18 @@
     <ClCompile Include="Wander.cpp">
       <Filter>Source Files\Agent Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\GSM</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files\GSM</Filter>
+    </ClCompile>
+    <ClCompile Include="SeekState.cpp">
+      <Filter>Source Files\GSM</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderState.cpp">
+      <Filter>Source Files\GSM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h">
@@ -82,6 +94,18 @@
     </ClInclude>
     <ClInclude Include="Wander.h">
       <Filter>Header Files\Agent Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\GSM</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Header Files\GSM</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderState.h">
+      <Filter>Header Files\GSM</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekState.h">
+      <Filter>Header Files\GSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

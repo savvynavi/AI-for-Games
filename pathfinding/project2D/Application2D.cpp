@@ -30,10 +30,27 @@ bool Application2D::startup() {
 
 	//graph stuff
 	m_graph.setNodes();
-
-	m_agent = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(2));
+	//agent 1
+	m_agent = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(2), 1, 0, 0, 0);
 	m_mousePos = {m_agent->getPos()->getPosition().x, m_agent->getPos()->getPosition().y};
 
+	m_sm = new StateManager(2);
+	SeekState* seekState = new SeekState(m_agent, m_sm);
+	WanderState* wanderState = new WanderState(m_agent, m_sm);
+
+	m_sm->registerState(SEEK, seekState);
+	m_sm->registerState(WANDER, wanderState);
+	m_sm->pushState(WANDER);
+
+	//agent 2
+	m_agent2 = new Agent(m_graph, m_2dRenderer, m_graph.getSingleNode(26), 1, 0.75f, 0, 7);
+	m_sm2 = new StateManager(2);
+	SeekState* seekState2 = new SeekState(m_agent2, m_sm2);
+	WanderState* wanderState2 = new WanderState(m_agent2, m_sm2);
+
+	m_sm2->registerState(SEEK, seekState2);
+	m_sm2->registerState(WANDER, wanderState2);
+	m_sm2->pushState(WANDER);
 	return true;
 }
 
@@ -64,11 +81,19 @@ void Application2D::update(float deltaTime) {
 			if(m_graph.getNodes()[i]->getData() != "NULL" && distance < 20){
 				m_mousePos = m_graph.getNodes()[i]->getPosition();
 				m_agent->m_seekPathBehav->setEndpoint(m_graph.getNodes()[i]);
+				m_agent2->m_seekPathBehav->setEndpoint(m_graph.getNodes()[i]);
+				
+				//if (m_sm->getTopState() == SEEK) {
+					m_agent->getPath().clear();
+					m_agent2->getPath().clear();
+				//}
 			}
 		}
 	}
 
-	m_agent->Update(deltaTime);
+	//m_agent->Update(deltaTime);
+	m_sm->update(deltaTime);
+	m_sm2->update(deltaTime);
 }
 
 void Application2D::draw() {
@@ -83,7 +108,11 @@ void Application2D::draw() {
 	m_2dRenderer->begin();
 
 	m_graph.Draw(m_2dRenderer);
-	m_agent->Draw();
+	//m_agent->Draw();
+	m_sm->draw();
+	m_sm2->draw();
+
+	m_2dRenderer->setRenderColour(0, 0.5f, 0.75f);
 	m_2dRenderer->drawCircle(m_mousePos.x, m_mousePos.y, 10);
 	// done drawing sprites
 	m_2dRenderer->end();

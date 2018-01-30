@@ -8,6 +8,11 @@
 #include "Agent.h"
 #include "Seek.h"
 
+#include"State.h"
+#include"StateManager.h"
+#include"SeekState.h"
+#include"WanderState.h"
+
 class Application2D : public aie::Application {
 public:
 
@@ -30,10 +35,14 @@ protected:
 
 	Graph				m_graph;
 	Agent*				m_agent;
+	Agent*				m_agent2;
 	Seek*				m_seekBehav;
 
 	Vector2				m_mousePos;
-	//bool				m_endPointCheck;
+	
+	StateManager*		m_sm;
+	StateManager*		m_sm2;
+
 
 	float m_cameraX, m_cameraY;
 	float m_timer;

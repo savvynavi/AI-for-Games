@@ -82,6 +82,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\MathLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,7 +101,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="SeekState.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Wander.cpp" />
+    <ClCompile Include="WanderState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
@@ -111,7 +116,11 @@
     <ClInclude Include="IBehaviour.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="SeekState.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="Wander.h" />
+    <ClInclude Include="WanderState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MathLibrary\MathLibrary.vcxproj">

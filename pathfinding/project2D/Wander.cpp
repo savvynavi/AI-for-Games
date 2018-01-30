@@ -35,7 +35,8 @@ void Wander::Update(Agent* agent, float dt) {
 			randIndex = rand() % m_agent->getMap().getNodes().size();
 		}
 		m_agent->setPath(m_agent->getMap().getSingleNode(randIndex));
-		m_agent->getPath().pop_front();
+		if(m_agent->getPath().size() > 0)
+			m_agent->getPath().pop_front();
 	}
 
 	//if no current path, sets a new one and resets first run to true

@@ -12,7 +12,7 @@ class Wander;
 //has a function that calls pathfinder in graph, stores it in its own list
 class Agent {
 public:
-	Agent(Graph graph, aie::Renderer2D* renderer, Node* startPos);
+	Agent(Graph graph, aie::Renderer2D* renderer, Node* startPos, float r, float g, float b, float offset);
 	~Agent();
 
 	Node* getPos();
@@ -31,8 +31,13 @@ public:
 
 	void Update(float dt);
 	void Draw();
+
+	//create setter/getter for these later, don't just leave as public
 	Seek* m_seekPathBehav;
+	Wander* m_wanderBehav;
 	Vector2 m_velocity;
+	std::list<IBehaviour*> m_behaviours;
+
 protected:
 	float m_dt;
 	aie::Renderer2D* m_renderer;
@@ -47,8 +52,6 @@ protected:
 	Vector2 m_force;
 	Vector2 m_agentPos;
 
-	//seek bahaviour
-	std::list<IBehaviour*> m_behaviours;
-	
-	Wander* m_wanderBehav;
+	float m_r, m_g, m_b;
+	float m_offset;
 };
