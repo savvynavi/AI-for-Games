@@ -19,15 +19,18 @@
     <Filter Include="Header Files\Agent Behaviour">
       <UniqueIdentifier>{f1c7733a-e576-4046-b989-e5bb12ac78ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GSM">
+      <UniqueIdentifier>{e23e6082-0db0-431c-8e06-4b327da8f51b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GSM">
+      <UniqueIdentifier>{c4d8664d-4811-489b-8d62-d2a49801f796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DijSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
@@ -48,12 +51,12 @@
     <ClCompile Include="flee.cpp">
       <Filter>Source Files\Agent Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="Wander.cpp">
+      <Filter>Source Files\Agent Behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DijSearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files\Agent Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="flee.h">
+      <Filter>Header Files\Agent Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="Wander.h">
       <Filter>Header Files\Agent Behaviour</Filter>
     </ClInclude>
   </ItemGroup>

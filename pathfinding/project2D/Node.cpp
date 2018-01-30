@@ -5,7 +5,7 @@ Node::Node(std::string data) : m_data(data){
 }
 
 Node::~Node(){
-
+	delete m_parent;
 }
 
 //checks if the edge has been added before for this node

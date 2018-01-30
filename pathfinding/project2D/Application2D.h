@@ -32,6 +32,9 @@ protected:
 	Agent*				m_agent;
 	Seek*				m_seekBehav;
 
+	Vector2				m_mousePos;
+	//bool				m_endPointCheck;
+
 	float m_cameraX, m_cameraY;
 	float m_timer;
 };

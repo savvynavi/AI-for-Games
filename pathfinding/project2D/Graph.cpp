@@ -94,16 +94,9 @@ void Graph::setNodes() {
 				nodeGrid[i][j] = tmpNode;
 			}
 			//sets the position of the nodes in a coord on the app
-			nodeGrid[i][j]->setPosition(Vector2(j * 32, i * 32));
+			nodeGrid[i][j]->setPosition(Vector2(j * 32, (m_size - i - 1) * 32));
 		}
 	}
-
-	//sets position in reverse so it draws correctly (eg not upsidedown)
-	//for (int i = m_size - 1; i >= 0; i--) {
-	//	for (int j = 0; j < m_size; j++) {
-	//		nodeGrid[i][j]->setPosition(Vector2(j * 32, i * 32));
-	//	}
-	//}
 
 	////creates edges between nodes up/down(left/right needs more checks) - Now it doesn't add edges to invalid "Null" nodes even though they're stored in m_nodes
 	for (int i = 0; i < m_size; i++) {
@@ -149,8 +142,13 @@ std::list<Node*> Graph::calculatePath(Node* start, Node* end){
 			std::list<Node*>::iterator inClosedList;
 			Node* currentTarget = currentNode->getEdges()[i]->getTarget();
 			inClosedList = std::find(closedList.begin(), closedList.end(), currentTarget);
-			
-			if(inClosedList == closedList.end()){
+
+			//ensures the pathfinding only stores the 1 path, as now if checks if the end is in the m_path
+			Node* finalNode = end;
+			std::list<Node*>::iterator inPath;
+			inPath = std::find(pathNodes.begin(), pathNodes.end(), finalNode);
+
+			if(inClosedList == closedList.end() && inPath == pathNodes.end()){
 				Node* endTarget = currentNode->getEdges()[i]->getTarget();
 				if(endTarget != end){
 					//calculates this gScore and compares to current one, if it's smaller it will become the new gScore and will set nodes up again

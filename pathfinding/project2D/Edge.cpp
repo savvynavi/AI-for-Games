@@ -7,7 +7,7 @@ Edge::Edge(Node* target, float cost){
 }
 
 Edge::~Edge(){
-
+	delete m_target;
 }
 
 Node* Edge::getTarget(){

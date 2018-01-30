@@ -2,6 +2,7 @@
 #include"Node.h"
 #include"Graph.h"
 #include"Seek.h"
+#include"Wander.h"
 #include<stdlib.h>
 #include<time.h>
 
@@ -14,10 +15,16 @@ Agent::Agent(Graph graph, aie::Renderer2D* renderer, Node* startPos){
 	m_velocity = { 0, 0 };
 	m_force = { 0, 0 };
 	srand(time(NULL));
+	m_seekPathBehav = new Seek(this);
+	m_wanderBehav = new Wander(this);
+	this->addBehaviour(m_seekPathBehav);
 }
 
 Agent::~Agent() {
-
+	delete m_agentPos;
+	delete m_renderer;
+	delete m_seekPathBehav;
+	delete m_endPoint;
 }
 
 Node* Agent::getPos() {
@@ -51,20 +58,8 @@ void Agent::addBehaviour(IBehaviour* behaviour){
 //calls the graph pathfinder using it's own node pos + given end pos, tries to form a list of nodes to path it there
 void Agent::setPath(Node* endPoint) {
 	m_endPoint = endPoint;
-	//std::vector<Node*>::iterator it;
-
-	//make this so that it can pathfind from where the agent currently is
-	Node* tmpPos = nullptr;
-	for (int i = 0; i < m_graph.getNodes().size(); i++) {
-		if (m_graph.getNodes()[i]->getPosition() == this->getPos()->getPosition()) {
-			tmpPos = m_graph.getNodes()[i];
-			break;
-		}
-	}
-
+	m_seekPathBehav->setEndpoint(m_endPoint);
 	m_path = m_graph.calculatePath(m_currentPos, m_endPoint);
-	m_seekPathBehav = new Seek(this, m_endPoint);
-	this->addBehaviour(m_seekPathBehav);
 }
 
 //returns the path it currently has
@@ -72,22 +67,22 @@ std::list<Node*>& Agent::getPath() {
 	return m_path;
 }
 
+Graph Agent::getMap() {
+	return m_graph;
+}
+
+void Agent::setEndpoint(Node* endpoint){
+	m_endPoint = endpoint;
+}
+
+Node* Agent::getEndpoint(){
+	return m_endPoint;
+}
+
 //moves the agent around each frame
 void Agent::Update(float dt) {
 	//loop through m_path to move the agent towards the end each frame based on pos and velocity
 	m_dt = dt;
-	
-	//if there currently isn't a path, it creates one
-	//currently doens't care where start point is, breaks the pathfinding 
-	if (m_path.size() <= 0) {
-		int randIndex = rand() % m_graph.getNodes().size() + 1;
-		while (m_graph.getSingleNode(randIndex)->getData() == "NULL") {
-			randIndex = rand() % m_graph.getNodes().size() + 1;
-		}
-		this->setPath(m_graph.getSingleNode(randIndex));
-	}
-	
-	this->setPos(this->getPath().front());
 
 	//loops through behaviour list and calls update on each one
 	for(auto it = m_behaviours.begin(); it != m_behaviours.end(); it++){

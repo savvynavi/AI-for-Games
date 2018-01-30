@@ -94,24 +94,24 @@
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Application2D.cpp" />
-    <ClCompile Include="DijSearch.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="flee.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agent.h" />
     <ClInclude Include="Application2D.h" />
-    <ClInclude Include="DijSearch.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="flee.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="IBehaviour.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="Wander.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MathLibrary\MathLibrary.vcxproj">

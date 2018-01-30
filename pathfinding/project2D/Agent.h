@@ -6,6 +6,7 @@
 class Node;
 class IBehaviour;
 class Seek;
+class Wander;
 
 //takes in a position in the graph and draws a circle there, draw function will draw it's path plus the circle at new position
 //has a function that calls pathfinder in graph, stores it in its own list
@@ -24,8 +25,14 @@ public:
 	void setPath(Node* endPoint);
 	std::list<Node*>& getPath();
 
+	Graph getMap();
+	void setEndpoint(Node* endpoint);
+	Node* getEndpoint();
+
 	void Update(float dt);
 	void Draw();
+	Seek* m_seekPathBehav;
+	Vector2 m_velocity;
 protected:
 	float m_dt;
 	aie::Renderer2D* m_renderer;
@@ -36,12 +43,12 @@ protected:
 	//agent movement
 	Graph m_graph;
 	float maxVelocity;
-	Vector2 m_velocity;
+
 	Vector2 m_force;
 	Vector2 m_agentPos;
 
 	//seek bahaviour
-	Node* targetPos;
 	std::list<IBehaviour*> m_behaviours;
-	Seek* m_seekPathBehav;
+	
+	Wander* m_wanderBehav;
 };
